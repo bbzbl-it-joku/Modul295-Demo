@@ -1,5 +1,6 @@
 package ch.kunz.joshua.flugbuchungsapi.hello;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@SecurityRequirement(name = "bearerAuth")
 public class HelloDataController {
 
     private HelloDataService helloDataService;
@@ -22,6 +24,7 @@ public class HelloDataController {
         return new ResponseEntity<>("Hello World", HttpStatus.OK);
     }
 
+    // REST Controller for HelloData.java
     @GetMapping("/api/hello")
     public ResponseEntity<List<HelloData>> apiHello() {
         return new ResponseEntity<>(helloDataService.findAll(), HttpStatus.OK);
